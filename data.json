@@ -1,6 +1,6 @@
 {
-  "as_of_utc": "2026-11-27T10:49:53Z",
-  "as_of_perth": "27 Nov 2026, 6:49pm AWST",
+  "as_of_utc": "2026-11-27T12:21:37Z",
+  "as_of_perth": "27 Nov 2026, 8:21pm AWST",
   "ship": {
     "name": "H\u00d6EGH TOKYO",
     "imo": "9285483",
@@ -42,15 +42,15 @@
     "wheels": "20-/21-Inch 911 GT3 forged Magnesium lightweight wheels, painted in Black (satin-gloss)"
   },
   "current": {
-    "ts_utc": "2026-11-27T10:49:53Z",
-    "perth": "27 Nov 2026, 6:49pm AWST",
-    "lat": 51.832733,
-    "lon": 2.716552,
-    "cog": 27.0,
-    "sog_kn": 14.6,
+    "ts_utc": "2026-11-27T12:21:37Z",
+    "perth": "27 Nov 2026, 8:21pm AWST",
+    "lat": 52.101193,
+    "lon": 3.07581,
+    "cog": 40.9,
+    "sog_kn": 10.5,
     "source": "vesselfinder_ml",
     "status": "Under way",
-    "area": "North Sea, off the Belgian coast",
+    "area": "North Sea, west of the Dutch coast",
     "destination_ais": "DEBRV > SEGOT",
     "destination_name": "Gothenburg",
     "destination_locode": "SEGOT"
@@ -60,8 +60,8 @@
     "locode": "SEGOT",
     "lat": 57.69447,
     "lon": 11.95224,
-    "eta_utc": "2026-11-28T18:30:00Z",
-    "eta_perth": "29 Nov 2026, 2:30am AWST",
+    "eta_utc": "2026-11-29T11:00:00Z",
+    "eta_perth": "29 Nov 2026, 7:00pm AWST",
     "confirmed": true,
     "confirmation": "AIS destination on VesselFinder (vi2/click/dm3), 27 Nov 2026"
   },
@@ -95,7 +95,7 @@
       "lat": 57.69447,
       "lon": 11.95224,
       "role": "next",
-      "detail": "AIS destination. ETA 29 Nov 2026, 2:30am AWST."
+      "detail": "AIS destination. ETA 29 Nov 2026, 7:00pm AWST."
     },
     {
       "id": "fremantle",
@@ -111,10 +111,6 @@
       "label": "AIS track since leaving Bremerhaven",
       "style": "solid",
       "points": [
-        {
-          "lat": 53.56938,
-          "lon": 8.549803
-        },
         {
           "lat": 53.569038,
           "lon": 8.549755
@@ -1054,9 +1050,89 @@
         {
           "lat": 51.832733,
           "lon": 2.716552
+        },
+        {
+          "lat": 51.834543,
+          "lon": 2.718083
+        },
+        {
+          "lat": 51.852555,
+          "lon": 2.733193
+        },
+        {
+          "lat": 51.87028,
+          "lon": 2.74762
+        },
+        {
+          "lat": 51.887423,
+          "lon": 2.7638
+        },
+        {
+          "lat": 51.901655,
+          "lon": 2.782685
+        },
+        {
+          "lat": 51.91736,
+          "lon": 2.804595
+        },
+        {
+          "lat": 51.932418,
+          "lon": 2.826053
+        },
+        {
+          "lat": 51.947178,
+          "lon": 2.84802
+        },
+        {
+          "lat": 51.962078,
+          "lon": 2.870218
+        },
+        {
+          "lat": 51.977782,
+          "lon": 2.893742
+        },
+        {
+          "lat": 51.991082,
+          "lon": 2.913995
+        },
+        {
+          "lat": 52.006898,
+          "lon": 2.937773
+        },
+        {
+          "lat": 52.021335,
+          "lon": 2.95961
+        },
+        {
+          "lat": 52.036578,
+          "lon": 2.982845
+        },
+        {
+          "lat": 52.051527,
+          "lon": 3.005775
+        },
+        {
+          "lat": 52.064487,
+          "lon": 3.024835
+        },
+        {
+          "lat": 52.076592,
+          "lon": 3.04175
+        },
+        {
+          "lat": 52.086843,
+          "lon": 3.056053
+        },
+        {
+          "lat": 52.097918,
+          "lon": 3.071277
+        },
+        {
+          "lat": 52.101193,
+          "lon": 3.07581
         }
       ],
-      "distance_nm": 290.5
+      "distance_nm": 311.5
     },
     "to_next_port": {
       "label": "Predicted path to Gothenburg",
@@ -1064,12 +1140,12 @@
       "source": "VesselFinder dm3 predicted route to the AIS destination",
       "points": [
         {
-          "lat": 51.832733,
-          "lon": 2.716552
+          "lat": 52.101193,
+          "lon": 3.07581
         },
         {
-          "lat": 51.946921,
-          "lon": 2.74275
+          "lat": 52.209146,
+          "lon": 3.211923
         },
         {
           "lat": 56.833325,
@@ -1124,7 +1200,7 @@
           "lon": 11.95224
         }
       ],
-      "distance_nm": 503.1
+      "distance_nm": 482.1
     },
     "onward_to_fremantle": {
       "label": "Expected route (not confirmed past Gothenburg), ending at Sausageworx Garage, Burswood",
@@ -1246,14 +1322,14 @@
           "note": "Sausageworx Garage, Burswood"
         }
       ],
-      "distance_nm": 11636.8
+      "distance_nm": 11645.7
     }
   },
   "distance": {
-    "travelled_nm": 290.5,
-    "remaining_nm": 12139.9,
-    "total_nm": 12430.4,
-    "progress_pct": 2.3,
+    "travelled_nm": 311.5,
+    "remaining_nm": 12127.8,
+    "total_nm": 12439.3,
+    "progress_pct": 2.5,
     "days_to_fremantle": 47,
     "remaining_is_estimate": true,
     "remaining_note": "Remaining distance is an estimate along the predicted path to Gothenburg and a plausible, unconfirmed ocean route to Fremantle."
