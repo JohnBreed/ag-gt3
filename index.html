@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AG GT3 Delivery</title>
+  <meta name="description" content="Voyage tracker for a 911 GT3 on Höegh Tokyo, bound for Fremantle and Sausageworx Garage, Burswood.">
+  <meta name="theme-color" content="#101114">
+  <link rel="icon" href="images/car-marker.png" type="image/png">
+  <style>
+    :root {
+      --bg: #101114;
+      --bg-card: #181a1e;
+      --bg-elevated: #1e2126;
+      --land: #2a2d33;
+      --ink: #f3f1eb;
+      --muted: #a19e96;
+      --faint: #6e6c66;
+      --line: #2e3138;
+      --silver: #c5c8cc;
+      --track: #6eb6ff;
+      --predicted: #e0a85c;
+      --onward: #8d9096;
+      --ok: #7dcea0;
+      --info: #3d4a5c;
+      --info-ink: #d5e2f0;
+      --radius: 12px;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--silver); }
+    a:hover { color: #fff; }
+    img { max-width: 100%; height: auto; display: block; }
+    header.site {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 12px;
+    }
+    header.site h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    header.site .lede {
+      margin: 0;
+      color: var(--muted);
+      max-width: 46rem;
+    }
+    .updated {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--faint);
+      font-size: 0.85rem;
+    }
+    .hero { margin: 16px 0 0; }
+    .hero img {
+      width: 100%;
+      max-height: 62vh;
+      object-fit: cover;
+      object-position: 50% 60%;
+    }
+    .hero figcaption, .shot figcaption {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 20px 0;
+      color: var(--faint);
+      font-size: 0.9rem;
+    }
+    nav.toc {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 22px 20px 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    nav.toc a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    nav.toc a:hover { color: var(--ink); text-decoration: underline; }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 8px 20px 72px;
+    }
+    section { padding-top: 36px; }
+    section h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    section h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+    p { margin: 0 0 12px; color: var(--ink); }
+    .caption { color: var(--muted); font-size: 0.92rem; margin-bottom: 14px; }
+    .callout {
+      background: var(--info);
+      color: var(--info-ink);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin: 24px 0 0;
+    }
+    .callout strong { display: block; margin-bottom: 4px; color: #fff; }
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .shot { margin: 0; }
+    .shot img { width: 100%; border-radius: 8px; background: var(--bg-card); }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+    .metric {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .metric .val {
+      font-size: 1.45rem;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+    .metric .lbl { color: var(--muted); font-size: 0.85rem; }
+    .metric .det { color: var(--faint); font-size: 0.8rem; margin-top: 2px; }
+    .props {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 16px;
+    }
+    .props th, .props td, .table th, .table td {
+      text-align: left;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .props th {
+      color: var(--muted);
+      font-weight: 500;
+      width: 11.5rem;
+      padding-right: 16px;
+    }
+    .pill {
+      display: inline-block;
+      background: #1d3a2c;
+      color: var(--ok);
+      border-radius: 999px;
+      padding: 1px 9px;
+      font-size: 0.85rem;
+    }
+    .map-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 0 0 10px;
+    }
+    .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .seg button, .btn {
+      background: var(--bg-card);
+      color: var(--ink);
+      border: 0;
+      border-right: 1px solid var(--line);
+      padding: 7px 12px;
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .seg button:last-child { border-right: 0; }
+    .seg button[aria-pressed="true"] { background: var(--bg-elevated); color: #fff; }
+    .btn { border: 1px solid var(--line); border-radius: 8px; }
+    .btn:hover, .seg button:hover { background: #25282e; }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .legend i {
+      display: inline-block;
+      width: 18px;
+      height: 0;
+      border-top: 3px solid;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .legend .track { border-color: var(--track); }
+    .legend .pred { border-color: var(--predicted); border-top-style: dashed; }
+    .legend .onw { border-color: var(--onward); border-top-style: dashed; }
+    .map-wrap {
+      position: relative;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .map-wrap svg { display: block; width: 100%; height: auto; touch-action: none; }
+    .popup {
+      position: absolute;
+      max-width: 280px;
+      padding: 10px 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .popup strong { display: block; margin-bottom: 4px; }
+    .popup span { display: block; color: var(--muted); }
+    .table-wrap { overflow-x: auto; }
+    .table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .table th { color: var(--muted); font-weight: 500; }
+    .table td:last-child, .table th:last-child { min-width: 12rem; }
+    .table.opts td:last-child, .table.opts th:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      min-width: 7rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 32px;
+    }
+    .plates { width: 200px; border-radius: 6px; margin: 8px 0 4px; }
+    footer.site {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px 48px;
+      color: var(--faint);
+      font-size: 0.85rem;
+    }
+    .muted { color: var(--muted); }
+    .error { color: #e08a8a; padding: 20px; }
+    @media (max-width: 800px) {
+      .shots, .metrics, .grid-2 { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .props th { width: 8.5rem; }
+      .hero img { max-height: 42vh; }
+    }
+    @media (max-width: 520px) {
+      .metrics { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <h1>AG GT3 Delivery</h1>
+    <p class="lede">A 911 GT3 is loaded on Höegh Tokyo and under way in the North Sea, now bound for Gothenburg, then on an unconfirmed ocean route to Fremantle and Sausageworx Garage, Burswood.</p>
+    <p class="updated" id="updated">Last updated —</p>
+  </header>
+
+  <figure class="hero">
+    <img src="images/prod-left.jpg" alt="Finished 911 GT3 in GT Silver on the production line, left side, with black wheels, yellow ceramic brake calipers and a Weissach rear wing" width="2200" height="1112">
+    <figcaption>AG GT3, finished on the production line. Ag is the chemical symbol for silver, for a GT Silver GT3.</figcaption>
+  </figure>
+
+  <nav class="toc" aria-label="On this page">
+    <a href="#production">From the production line</a>
+    <a href="#status">Status</a>
+    <a href="#map">Voyage map</a>
+    <a href="#timeline">Port calls and timeline</a>
+    <a href="#ship">The ship</a>
+    <a href="#cargo">Shipping record</a>
+    <a href="#car">The car</a>
+    <a href="#specification">Specification</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+    <section id="production">
+      <h2>From the production line</h2>
+      <div class="shots">
+        <figure class="shot">
+          <img src="images/prod-bodyshop.jpg" alt="The bare GT Silver body shell in the body shop" width="1600" height="1067">
+          <figcaption>Body shell in the body shop.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/prod-assembly.jpg" alt="The front of the car on the assembly line with the bonnet up" width="1600" height="1067">
+          <figcaption>On the assembly line.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/prod-right.jpg" alt="Finished 911 GT3, right side profile, on the production line" width="1600" height="800">
+          <figcaption>Finished, right side. Photos from Porsche Track Your Dream.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="callout">
+      <strong>Next port is now Gothenburg.</strong>
+      AIS changed on the afternoon of 27 Nov from Zeebrugge, which had been due at 9:00pm AWST that evening, to Gothenburg, due 29 Nov 2026, 2:30am AWST. The ship turned north at about 6:20pm AWST and did not call at Zeebrugge. No ports of call after Gothenburg are confirmed.
+    </div>
+
+    <section id="status">
+      <h2>Status</h2>
+      <p>Höegh Tokyo is under way in the North Sea with the GT3 on board, heading for Gothenburg, then Fremantle on 13 Jan 2027, and on to Sausageworx Garage, Burswood after discharge.</p>
+      <div class="metrics" id="metrics"></div>
+      <table class="props" id="status-props"></table>
+      <p class="caption">Remaining distance is an estimate along VesselFinder's predicted path to Gothenburg and a plausible ocean route from there to Fremantle. Ports of call after Gothenburg are not confirmed. The last dashed hop after Fremantle is the short run to Burswood.</p>
+    </section>
+
+    <section id="map">
+      <h2>Voyage map</h2>
+      <p class="caption">The solid line is the AIS track since leaving Bremerhaven. The first dashed line is VesselFinder's predicted path to Gothenburg. The second dashed line is an expected onward route via the English Channel, West Africa and the Cape of Good Hope, then a short hop from Fremantle to Sausageworx Garage in Burswood; it is not confirmed past Gothenburg. The silver 911 marks the current position of the GT3 on Höegh Tokyo. The oil-can marks someone waiting in Perth, and the workshop badge marks Sausageworx Garage, Burswood. Click a marker or a port for details.</p>
+      <div class="map-toolbar">
+        <div class="seg" role="group" aria-label="Map extent">
+          <button type="button" id="btn-voyage" aria-pressed="true">Full voyage</button>
+          <button type="button" id="btn-northsea" aria-pressed="false">North Sea</button>
+        </div>
+        <button type="button" class="btn" id="btn-in">Zoom in</button>
+        <button type="button" class="btn" id="btn-out">Zoom out</button>
+        <button type="button" class="btn" id="btn-reset">Reset view</button>
+      </div>
+      <div class="legend">
+        <span><i class="track"></i>AIS track since leaving Bremerhaven</span>
+        <span><i class="pred"></i>Predicted path to Gothenburg</span>
+        <span><i class="onw"></i>Expected route (not confirmed past Gothenburg)</span>
+      </div>
+      <div class="map-wrap" id="map-wrap">
+        <svg id="map" viewBox="0 0 1280 680" role="img" aria-label="Map of Höegh Tokyo from Europe to Fremantle, with the AIS track and expected route"></svg>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <h2>Port calls and timeline</h2>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr><th>Milestone</th><th>When (AWST)</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Antwerp departure</td><td>24 Nov 2026, 10:51am</td><td>Ship's previous port. The car was not yet loaded.</td></tr>
+            <tr><td>Bremerhaven arrival</td><td>25 Nov 2026, 12:07pm</td><td>Ship arrived before the car was received.</td></tr>
+            <tr><td>Car received and loaded</td><td>25 Nov 2026</td><td>Höegh cargo record, Bremerhaven.</td></tr>
+            <tr><td>Left the port of shipment</td><td>25 Nov 2026</td><td>Porsche Track Your Dream, milestone 6 of 8.</td></tr>
+            <tr><td>Bremerhaven departure</td><td>26 Nov 2026, 11:51pm</td><td>Official ATD. The GT3 is on board.</td></tr>
+            <tr><td>Turned north</td><td>27 Nov 2026, 6:20pm</td><td>Left the Zeebrugge approach. AIS destination changed to Gothenburg.</td></tr>
+            <tr><td>AIS position</td><td id="ais-when">27 Nov 2026, 6:49pm</td><td id="ais-note"></td></tr>
+            <tr><td>Gothenburg ETA</td><td>29 Nov 2026, 2:30am</td><td>Confirmed AIS destination. Not yet arrived.</td></tr>
+            <tr><td>English Channel, West Africa, Cape of Good Hope</td><td>Unconfirmed</td><td>Expected ocean legs only. No further ports of call are confirmed.</td></tr>
+            <tr><td>Fremantle ETA</td><td>13 Jan 2027</td><td>Höegh cargo record. Date only; no time of day is given.</td></tr>
+            <tr><td>Sausageworx Garage, Burswood</td><td>After discharge</td><td>Final destination after the ship arrives at Fremantle.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section id="ship">
+        <h2>The ship</h2>
+        <figure class="shot">
+          <img src="images/hoegh-tokyo.jpg" alt="Höegh Tokyo, a white and grey Höegh Autoliners vehicle carrier, departing Fremantle on 31 July 2015, with the name HÖEGH TOKYO visible on the bow" width="768" height="576">
+          <figcaption>Höegh Tokyo (IMO 9285483) departing Fremantle on 31 July 2015. Photograph by Andrew Priest, on VesselFinder at https://www.vesselfinder.com/ship-photos/156660</figcaption>
+        </figure>
+        <table class="props" id="ship-props"></table>
+      </section>
+      <section id="cargo">
+        <h2>Shipping record</h2>
+        <table class="props">
+          <tr><th>VIN</th><td>XXXXXXX</td></tr>
+          <tr><th>Plates</th><td>AG GT3, black aluminium with silver characters, ordered through PlatesWA</td></tr>
+          <tr><th>Received and loaded</th><td>25 Nov 2026, Bremerhaven</td></tr>
+          <tr><th>Porsche milestone</th><td>6 of 8, left the port of shipment, 25 Nov 2026</td></tr>
+          <tr><th>Discharge</th><td>Fremantle, 13 Jan 2027</td></tr>
+          <tr><th>Final destination</th><td>Sausageworx Garage, Burswood</td></tr>
+        </table>
+      </section>
+    </div>
+
+    <section id="car">
+      <h2>The car</h2>
+      <figure class="shot">
+        <img src="images/spec-side.jpg" alt="Configurator side view of this 911 GT3 in GT Silver Metallic with the Weissach package, black magnesium wheels and yellow ceramic brake calipers" width="1600" height="900">
+        <figcaption>From the 23 Aug 2026 specification. A configurator image of this specification, not a photograph of the finished car. The specification notes that images may differ in some respects from the actual vehicle.</figcaption>
+      </figure>
+      <div class="grid-2" style="margin-top:12px">
+        <figure class="shot">
+          <img src="images/spec-front.jpg" alt="Configurator front three-quarter view of this GT Silver 911 GT3 with the Weissach package" width="1600" height="900">
+          <figcaption>Front three-quarter view, from the specification.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="images/spec-rear.jpg" alt="Configurator rear three-quarter view of this GT Silver 911 GT3, showing the Weissach rear wing and central exhaust" width="1600" height="900">
+          <figcaption>Rear three-quarter view, from the specification.</figcaption>
+        </figure>
+      </div>
+      <figure class="shot" style="margin-top:12px">
+        <img src="images/spec-interior.jpg" alt="Configurator interior of this 911 GT3, black leather and Race-Tex with a GT sports steering wheel and PDK selector" width="1600" height="900">
+        <figcaption>Interior from the specification: black leather and Race-Tex with contrasting GT Silver, GT sports steering wheel and PDK.</figcaption>
+      </figure>
+      <table class="props">
+        <tr><th>Model</th><td>2027 911 GT3</td></tr>
+        <tr><th>Colour</th><td>GT Silver Metallic</td></tr>
+        <tr><th>Transmission</th><td>7-speed Porsche Doppelkupplung (PDK)</td></tr>
+        <tr><th>Package</th><td>Weissach package without roll cage, plus Club Sport package</td></tr>
+        <tr><th>Interior</th><td>Extensive leather / Race-Tex in Black, contrasting GT Silver</td></tr>
+        <tr><th>Seats</th><td>Lightweight Sport bucket seats, foldable, with seat heating</td></tr>
+        <tr><th>Wheels</th><td>20-/21-inch 911 GT3 forged magnesium lightweight wheels, black satin-gloss</td></tr>
+        <tr><th>VIN</th><td>XXXXXXX</td></tr>
+        <tr><th>Plates</th><td>AG GT3, black aluminium with silver characters, ordered through PlatesWA</td></tr>
+      </table>
+      <img class="plates" src="images/plates-ag-gt3.jpg" alt="AG GT3 number plates, black with silver characters, front 372 x 100 mm and back 372 x 134 mm" width="250" height="280">
+      <p class="caption">The AG GT3 plates as ordered from PlatesWA: front 372 x 100 mm, back 372 x 134 mm, aluminium.</p>
+    </section>
+
+    <section id="specification">
+      <h2>Specification</h2>
+      <p>Options below are from the 23 Aug 2026 specification. Dollar figures on this public page are masked.</p>
+      <div class="table-wrap">
+        <table class="table opts">
+          <thead>
+            <tr><th>Option</th><th>Code</th><th>Price</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GT Silver Metallic</td><td>U2</td><td>Included</td></tr>
+            <tr><td>20-/21-inch 911 GT3 forged magnesium lightweight wheels</td><td>F37</td><td>$XXXXXXX</td></tr>
+            <tr><td>Wheels painted in Black (satin-gloss)</td><td>1NX</td><td>$XXXXXXX</td></tr>
+            <tr><td>Interior, extensive leather / Race-Tex Black with contrasting GT Silver</td><td>43</td><td>$XXXXXXX</td></tr>
+            <tr><td>Lightweight Sport bucket seats (foldable)</td><td>Q1S</td><td>$XXXXXXX</td></tr>
+            <tr><td>Seat heating (front)</td><td>4A3</td><td>Included</td></tr>
+            <tr><td>Weissach package without roll cage</td><td>04I</td><td>$XXXXXXX</td></tr>
+            <tr><td>Club Sport package</td><td>95L</td><td>Included</td></tr>
+            <tr><td>Front lid, roof and rear wing in exterior colour</td><td>5M7</td><td>Included</td></tr>
+            <tr><td>Privacy glass</td><td>VW7</td><td>$XXXXXXX</td></tr>
+            <tr><td>Model logo on storage compartment lid, Race-Tex</td><td>AJ1</td><td>$XXXXXXX</td></tr>
+            <tr><td>Door sill guards in Carbon matt, illuminated</td><td>7M8</td><td>$XXXXXXX</td></tr>
+            <tr><td>7-speed Porsche Doppelkupplung (PDK)</td><td>G1C</td><td>Standard</td></tr>
+            <tr><td>Lifting system, front axle</td><td>2UH</td><td>Standard</td></tr>
+            <tr><td>Chrono Package</td><td>8LH</td><td>$XXXXXXX</td></tr>
+            <tr><td>Porsche Ceramic Composite Brake (PCCB), calipers painted in Yellow</td><td>1LQ</td><td>$XXXXXXX</td></tr>
+            <tr><td>BOSE Surround Sound System</td><td>9VL</td><td>$XXXXXXX</td></tr>
+            <tr><td>Price for equipment</td><td></td><td>$XXXXXXX</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-2" style="margin-top:28px">
+        <div>
+          <h3>Power and performance</h3>
+          <table class="props">
+            <tr><th>Engine</th><td>4.0-litre naturally aspirated flat-six</td></tr>
+            <tr><th>Displacement</th><td>3,996 cm³</td></tr>
+            <tr><th>Power</th><td>375 kW / 510 PS</td></tr>
+            <tr><th>Torque</th><td>450 Nm</td></tr>
+            <tr><th>Maximum revs</th><td>9,000 rpm</td></tr>
+            <tr><th>0–100 km/h</th><td>3.4 s</td></tr>
+            <tr><th>Top speed</th><td>311 km/h</td></tr>
+          </table>
+        </div>
+        <div>
+          <h3>Dimensions</h3>
+          <table class="props">
+            <tr><th>Length</th><td>4,570 mm</td></tr>
+            <tr><th>Width, mirrors out</th><td>2,033 mm</td></tr>
+            <tr><th>Width, mirrors folded</th><td>1,834 mm</td></tr>
+            <tr><th>Height</th><td>1,279 mm</td></tr>
+            <tr><th>Wheelbase</th><td>2,457 mm</td></tr>
+            <tr><th>Fuel tank</th><td>63 l</td></tr>
+            <tr><th>Front luggage</th><td>135 l</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <h2>Sources</h2>
+      <p><a href="https://www.vesselfinder.com/vessels/details/9285483">Höegh Tokyo on VesselFinder</a></p>
+      <p class="caption">Ship photograph by Andrew Priest, via <a href="https://www.vesselfinder.com/ship-photos/156660">VesselFinder ship photos</a>. Land outlines from Natural Earth 110m. Positions from VesselFinder AIS.</p>
+    </section>
+  </main>
+
+  <footer class="site">
+    Last updated times are in Perth time (AWST, UTC+8). Voyage data is written by a watch routine into <code>data.json</code>; leave this page open and it will refresh on its own every few minutes.
+  </footer>
+
+  <script>
+  (function () {
+    const MAP_W = 1280, MAP_H = 680, PAD = 18;
+    const VIEWS = {
+      northsea: { lonMin: -1.3, lonMax: 13.4, latMin: 50.55, latMax: 58.95, projection: "mercator" },
+      voyage: { lonMin: -28, lonMax: 128, latMin: -40, latMax: 64, projection: "equirectangular" }
+    };
+    const OFFSETS = {
+      john: { dx: -48, dy: -56 },
+      workshop: { dx: 44, dy: 32 }
+    };
+
+    let voyage = null, coasts = null;
+    let viewId = "voyage";
+    let scale = 1, tx = 0, ty = 0;
+    let popup = null;
+    let drag = null;
+
+    const svg = document.getElementById("map");
+    const wrap = document.getElementById("map-wrap");
+
+    function mercatorY(lat) {
+      const rad = (Math.min(89.5, Math.max(-89.5, lat)) * Math.PI) / 180;
+      return Math.log(Math.tan(Math.PI / 4 + rad / 2));
+    }
+    function project(lon, lat, view) {
+      const x = (lon - view.lonMin) / (view.lonMax - view.lonMin);
+      let y;
+      if (view.projection === "equirectangular") {
+        y = (view.latMax - lat) / (view.latMax - view.latMin);
+      } else {
+        const yTop = mercatorY(view.latMax);
+        const yBot = mercatorY(view.latMin);
+        y = (mercatorY(lat) - yTop) / (yBot - yTop);
+      }
+      return { x: PAD + x * (MAP_W - 2 * PAD), y: PAD + y * (MAP_H - 2 * PAD) };
+    }
+    function linePath(points, view) {
+      return points.map(function (p, i) {
+        const pt = project(p.lon, p.lat, view);
+        return (i === 0 ? "M" : "L") + pt.x.toFixed(1) + "," + pt.y.toFixed(1);
+      }).join(" ");
+    }
+    function ringPath(ring, view) {
+      return ring.map(function (p, i) {
+        const pt = project(p[0], p[1], view);
+        return (i === 0 ? "M" : "L") + pt.x.toFixed(1) + "," + pt.y.toFixed(1);
+      }).join(" ") + " Z";
+    }
+    function fmtCoord(lat, lon) {
+      const ns = lat >= 0 ? "N" : "S";
+      const ew = lon >= 0 ? "E" : "W";
+      return Math.abs(lat).toFixed(3) + "°" + ns + ", " + Math.abs(lon).toFixed(3) + "°" + ew;
+    }
+    function inView(lat, lon, view) {
+      return lon >= view.lonMin && lon <= view.lonMax && lat >= view.latMin && lat <= view.latMax;
+    }
+    function el(name, attrs, parent) {
+      const node = document.createElementNS("http://www.w3.org/2000/svg", name);
+      if (attrs) {
+        Object.keys(attrs).forEach(function (k) {
+          if (attrs[k] !== undefined && attrs[k] !== null) node.setAttribute(k, attrs[k]);
+        });
+      }
+      if (parent) parent.appendChild(node);
+      return node;
+    }
+
+    function markerOffset(id) {
+      if (viewId !== "voyage") return { dx: 0, dy: 0 };
+      return OFFSETS[id] || { dx: 0, dy: 0 };
+    }
+
+    function draw() {
+      if (!voyage || !coasts) return;
+      const view = VIEWS[viewId];
+      const cur = voyage.current;
+      const ns = "http://www.w3.org/2000/svg";
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      el("rect", { x: 0, y: 0, width: MAP_W, height: MAP_H, fill: "#101114" }, svg);
+      const g = el("g", { transform: "translate(" + tx + " " + ty + ") scale(" + scale + ")" }, svg);
+
+      const rings = viewId === "northsea" ? coasts.northsea : coasts.voyage;
+      el("path", {
+        d: rings.map(function (r) { return ringPath(r, view); }).join(" "),
+        fill: "#2a2d33",
+        stroke: "#3a3d44",
+        "stroke-width": (0.7 / scale).toFixed(3)
+      }, g);
+
+      el("path", {
+        d: linePath(voyage.routes.onward_to_fremantle.points, view),
+        fill: "none",
+        stroke: "#8d9096",
+        "stroke-width": (2 / scale).toFixed(3),
+        "stroke-dasharray": (8 / scale) + " " + (6 / scale),
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, g);
+      el("path", {
+        d: linePath(voyage.routes.to_next_port.points, view),
+        fill: "none",
+        stroke: "#e0a85c",
+        "stroke-width": (2.2 / scale).toFixed(3),
+        "stroke-dasharray": (7 / scale) + " " + (5 / scale),
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, g);
+      el("path", {
+        d: linePath(voyage.routes.travelled.points, view),
+        fill: "none",
+        stroke: "#6eb6ff",
+        "stroke-width": (2.4 / scale).toFixed(3),
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, g);
+
+      voyage.ports.forEach(function (port) {
+        if (!inView(port.lat, port.lon, view)) return;
+        const pt = project(port.lon, port.lat, view);
+        const right = port.id !== "antwerp";
+        el("circle", {
+          cx: pt.x, cy: pt.y,
+          r: viewId === "voyage" ? 4.5 : 5,
+          fill: port.role === "next" ? "#e0a85c" : "#f3f1eb",
+          stroke: "#101114",
+          "stroke-width": 1.5
+        }, g);
+        const label = el("text", {
+          x: pt.x + (right ? 9 : -9),
+          y: pt.y + 4,
+          "text-anchor": right ? "start" : "end",
+          fill: "#f3f1eb",
+          "font-family": "ui-sans-serif, system-ui, sans-serif",
+          "font-size": viewId === "voyage" ? 11 : 12
+        }, g);
+        label.textContent = port.name;
+      });
+
+      if (viewId === "voyage") {
+        const cape = project(22, -28, view);
+        const t1 = el("text", {
+          x: cape.x, y: cape.y, fill: "#a19e96",
+          "font-family": "ui-sans-serif, system-ui, sans-serif", "font-size": 12
+        }, g);
+        t1.textContent = "Expected route (not confirmed past Gothenburg)";
+        const hope = project(18.5, -34.5, view);
+        const t2 = el("text", {
+          x: hope.x + 8, y: hope.y + 14, fill: "#6e6c66",
+          "font-family": "ui-sans-serif, system-ui, sans-serif", "font-size": 11
+        }, g);
+        t2.textContent = "Cape of Good Hope";
+      }
+
+      function placeIcon(id, lat, lon, href, size, label, labelAlign) {
+        if (!inView(lat, lon, view)) return null;
+        const base = project(lon, lat, view);
+        const off = markerOffset(id);
+        const x = base.x + off.dx;
+        const y = base.y + off.dy;
+        if (off.dx || off.dy) {
+          el("path", {
+            d: "M" + base.x.toFixed(1) + "," + base.y.toFixed(1) + " L" + x.toFixed(1) + "," + y.toFixed(1),
+            stroke: "#8d9096",
+            "stroke-width": (1.1 / scale).toFixed(3),
+            fill: "none"
+          }, g);
+        }
+        const ig = el("g", { transform: "translate(" + x + " " + y + ")" }, g);
+        const iw = size, ih = size;
+        el("image", {
+          href: href,
+          x: -iw / 2, y: -ih / 2,
+          width: iw, height: ih,
+          "preserveAspectRatio": "xMidYMid meet"
+        }, ig);
+        const lx = (labelAlign === "end" ? -iw / 2 - 6 : iw / 2 + 6);
+        const lab = el("text", {
+          x: lx, y: 5,
+          "text-anchor": labelAlign || "start",
+          fill: "#f3f1eb",
+          "font-family": "ui-sans-serif, system-ui, sans-serif",
+          "font-size": 11,
+          "paint-order": "stroke",
+          stroke: "#101114",
+          "stroke-width": 3
+        }, ig);
+        lab.textContent = label;
+        return { x: x, y: y, r: size / 2 + 4, id: id, label: label, lat: lat, lon: lon, base: base };
+      }
+
+      const localHits = [];
+      const mk = voyage.markers || {};
+      if (mk.john) {
+        const hit = placeIcon("john", mk.john.lat, mk.john.lon, mk.john.icon, mk.john.size_px || 36, mk.john.label, "end");
+        if (hit) {
+          hit.lines = [fmtCoord(mk.john.lat, mk.john.lon), "Perth city centre. Waiting for the car."];
+          localHits.push(hit);
+        }
+      }
+      if (mk.workshop) {
+        const hit = placeIcon("workshop", mk.workshop.lat, mk.workshop.lon, mk.workshop.icon, mk.workshop.size_px || 36, mk.workshop.label, "start");
+        if (hit) {
+          hit.lines = [fmtCoord(mk.workshop.lat, mk.workshop.lon), "Burswood. Final destination after discharge at Fremantle."];
+          localHits.push(hit);
+        }
+      }
+
+      const ship = project(cur.lon, cur.lat, view);
+      const car = mk.car || {};
+      const carH = car.size_px || 32;
+      const carW = carH * (102 / 171);
+      const cg = el("g", {
+        transform: "translate(" + ship.x + " " + ship.y + ") rotate(" + cur.cog + ")"
+      }, g);
+      el("image", {
+        href: car.icon || "images/car-marker.png",
+        x: -carW / 2, y: -carH / 2,
+        width: carW, height: carH,
+        "preserveAspectRatio": "xMidYMid meet"
+      }, cg);
+
+      draw.hits = {
+        ship: ship,
+        locals: localHits,
+        ports: voyage.ports.filter(function (p) { return inView(p.lat, p.lon, view); })
+      };
+
+      const existing = wrap.querySelector(".popup");
+      if (existing) existing.remove();
+      if (popup) {
+        const sx = popup.x * scale + tx;
+        const sy = popup.y * scale + ty;
+        const div = document.createElement("div");
+        div.className = "popup";
+        div.style.left = "calc(" + ((sx / MAP_W) * 100) + "% + 16px)";
+        div.style.top = "calc(" + ((sy / MAP_H) * 100) + "% - 8px)";
+        const title = document.createElement("strong");
+        title.textContent = popup.title;
+        div.appendChild(title);
+        popup.lines.forEach(function (line) {
+          const s = document.createElement("span");
+          s.textContent = line;
+          div.appendChild(s);
+        });
+        wrap.appendChild(div);
+      }
+    }
+
+    function toLocal(evt) {
+      const rect = svg.getBoundingClientRect();
+      return {
+        x: ((evt.clientX - rect.left) / rect.width) * MAP_W,
+        y: ((evt.clientY - rect.top) / rect.height) * MAP_H
+      };
+    }
+    function screenToWorld(sx, sy) {
+      return { x: (sx - tx) / scale, y: (sy - ty) / scale };
+    }
+
+    svg.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      svg.setPointerCapture(e.pointerId);
+      const loc = toLocal(e);
+      drag = { id: e.pointerId, x: loc.x, y: loc.y, tx: tx, ty: ty, moved: false };
+      svg.style.cursor = "grabbing";
+    });
+    svg.addEventListener("pointermove", function (e) {
+      if (!drag || drag.id !== e.pointerId) return;
+      const loc = toLocal(e);
+      const dx = loc.x - drag.x, dy = loc.y - drag.y;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) drag.moved = true;
+      tx = drag.tx + dx;
+      ty = drag.ty + dy;
+      draw();
+    });
+    function endDrag(e) {
+      if (!drag || drag.id !== e.pointerId) return;
+      const moved = drag.moved;
+      const loc = toLocal(e);
+      drag = null;
+      svg.style.cursor = scale > 1 ? "grab" : "default";
+      if (moved || !voyage) return;
+      const world = screenToWorld(loc.x, loc.y);
+      const hitR = 16 / scale;
+      const hits = draw.hits || { ship: { x: 0, y: 0 }, locals: [], ports: [] };
+      const dxs = world.x - hits.ship.x, dys = world.y - hits.ship.y;
+      if (dxs * dxs + dys * dys <= hitR * hitR * 4) {
+        const cur = voyage.current, next = voyage.next_port;
+        popup = {
+          x: hits.ship.x, y: hits.ship.y,
+          title: "GT3 (on Höegh Tokyo)",
+          lines: [
+            "Fix " + cur.perth,
+            fmtCoord(cur.lat, cur.lon),
+            cur.sog_kn + " kn, course " + cur.cog + "°",
+            cur.status + " · " + cur.area,
+            "Next port " + next.name + ", ETA " + next.eta_perth
+          ]
+        };
+        draw();
+        return;
+      }
+      for (let i = 0; i < hits.locals.length; i++) {
+        const h = hits.locals[i];
+        const dx = world.x - h.x, dy = world.y - h.y;
+        if (dx * dx + dy * dy <= (h.r / scale + hitR) * (h.r / scale + hitR)) {
+          popup = { x: h.x, y: h.y, title: h.label, lines: h.lines };
+          draw();
+          return;
+        }
+      }
+      const view = VIEWS[viewId];
+      for (let i = 0; i < hits.ports.length; i++) {
+        const port = hits.ports[i];
+        const pt = project(port.lon, port.lat, view);
+        const dx = world.x - pt.x, dy = world.y - pt.y;
+        if (dx * dx + dy * dy <= hitR * hitR) {
+          popup = { x: pt.x, y: pt.y, title: port.name, lines: [port.detail] };
+          draw();
+          return;
+        }
+      }
+      popup = null;
+      draw();
+    }
+    svg.addEventListener("pointerup", endDrag);
+    svg.addEventListener("pointercancel", function () { drag = null; });
+
+    function resetView(next) {
+      if (next) viewId = next;
+      scale = 1; tx = 0; ty = 0; popup = null;
+      document.getElementById("btn-voyage").setAttribute("aria-pressed", viewId === "voyage" ? "true" : "false");
+      document.getElementById("btn-northsea").setAttribute("aria-pressed", viewId === "northsea" ? "true" : "false");
+      draw();
+    }
+    function zoomBy(factor) {
+      const cx = MAP_W / 2, cy = MAP_H / 2;
+      const next = Math.max(1, Math.min(8, scale * factor));
+      const k = next / scale;
+      tx = cx - (cx - tx) * k;
+      ty = cy - (cy - ty) * k;
+      scale = next;
+      svg.style.cursor = scale > 1 ? "grab" : "default";
+      draw();
+    }
+    document.getElementById("btn-voyage").addEventListener("click", function () { resetView("voyage"); });
+    document.getElementById("btn-northsea").addEventListener("click", function () { resetView("northsea"); });
+    document.getElementById("btn-in").addEventListener("click", function () { zoomBy(1.4); });
+    document.getElementById("btn-out").addEventListener("click", function () { zoomBy(1 / 1.4); });
+    document.getElementById("btn-reset").addEventListener("click", function () { resetView(); });
+
+    function row(table, label, valueHtml) {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th");
+      th.textContent = label;
+      const td = document.createElement("td");
+      td.innerHTML = valueHtml;
+      tr.appendChild(th); tr.appendChild(td); table.appendChild(tr);
+    }
+
+    function fillPage() {
+      const cur = voyage.current, dist = voyage.distance, cargo = voyage.cargo, ship = voyage.ship, next = voyage.next_port;
+      document.getElementById("updated").textContent = "Last updated " + (voyage.as_of_perth || cur.perth);
+      document.getElementById("ais-when").textContent = cur.perth;
+      document.getElementById("ais-note").textContent = fmtCoord(cur.lat, cur.lon) + ", " + cur.sog_kn + " kn, under way.";
+
+      const metrics = document.getElementById("metrics");
+      metrics.innerHTML = "";
+      [
+        { val: dist.progress_pct + "%", lbl: "Progress", det: "Since leaving Bremerhaven" },
+        { val: Number(dist.remaining_nm).toLocaleString("en-US") + " nm", lbl: "Remaining", det: "Estimate along the expected route" },
+        { val: dist.travelled_nm + " nm", lbl: "Sailed", det: "AIS track since departure" },
+        { val: dist.days_to_fremantle + " days", lbl: "To Fremantle", det: "Until the 13 Jan 2027 ETA" }
+      ].forEach(function (m) {
+        const d = document.createElement("div");
+        d.className = "metric";
+        d.innerHTML = '<div class="val"></div><div class="lbl"></div><div class="det"></div>';
+        d.querySelector(".val").textContent = m.val;
+        d.querySelector(".lbl").textContent = m.lbl;
+        d.querySelector(".det").textContent = m.det;
+        metrics.appendChild(d);
+      });
+
+      const st = document.getElementById("status-props");
+      st.innerHTML = "";
+      row(st, "Car loaded", '<span class="pill">Yes, 25 Nov 2026</span>');
+      row(st, "Current position", fmtCoord(cur.lat, cur.lon) + " · " + cur.area);
+      row(st, "Speed and course", cur.sog_kn + " kn, course " + cur.cog + "°");
+      row(st, "Next port", next.name + ", " + next.eta_perth);
+      row(st, "Fremantle ETA", cargo.fremantle_eta_label);
+      row(st, "Last update", cur.perth);
+
+      const sp = document.getElementById("ship-props");
+      sp.innerHTML = "";
+      row(sp, "Name", ship.name);
+      row(sp, "Type", "Vehicle carrier");
+      row(sp, "IMO", "<code>9285483</code>");
+      row(sp, "MMSI", "<code>257408000</code>");
+      row(sp, "Flag", "Norway");
+      row(sp, "Built", "2004");
+      row(sp, "Dimensions", "228.7 m × 32.3 m");
+      row(sp, "Gross tonnage", "68,871 GT");
+    }
+
+    function load() {
+      return Promise.all([
+        fetch("data.json", { cache: "no-store" }).then(function (r) {
+          if (!r.ok) throw new Error("data.json " + r.status);
+          return r.json();
+        }),
+        fetch("coasts.json", { cache: "force-cache" }).then(function (r) {
+          if (!r.ok) throw new Error("coasts.json " + r.status);
+          return r.json();
+        })
+      ]).then(function (pair) {
+        voyage = pair[0];
+        coasts = pair[1];
+        fillPage();
+        draw();
+      }).catch(function (err) {
+        wrap.innerHTML = '<p class="error">Could not load the voyage data. ' + err.message + "</p>";
+      });
+    }
+
+    load();
+    setInterval(load, 5 * 60 * 1000);
+  })();
+  </script>
+</body>
+</html>
