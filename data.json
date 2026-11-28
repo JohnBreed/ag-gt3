@@ -1,6 +1,6 @@
 {
-  "as_of_utc": "2026-11-28T04:23:29Z",
-  "as_of_perth": "28 Nov 2026, 12:23pm AWST",
+  "as_of_utc": "2026-11-28T06:21:49Z",
+  "as_of_perth": "28 Nov 2026, 2:21pm AWST",
   "ship": {
     "name": "H\u00d6EGH TOKYO",
     "imo": "9285483",
@@ -42,11 +42,11 @@
     "wheels": "20-/21-Inch 911 GT3 forged Magnesium lightweight wheels, painted in Black (satin-gloss)"
   },
   "current": {
-    "ts_utc": "2026-11-28T04:23:29Z",
-    "perth": "28 Nov 2026, 12:23pm AWST",
-    "lat": 54.630647,
-    "lon": 5.55282,
-    "cog": 23.3,
+    "ts_utc": "2026-11-28T06:21:49Z",
+    "perth": "28 Nov 2026, 2:21pm AWST",
+    "lat": 54.834055,
+    "lon": 5.717823,
+    "cog": 22.6,
     "sog_kn": 7.0,
     "source": "vesselfinder_ml",
     "status": "Under way",
@@ -1910,9 +1910,105 @@
         {
           "lat": 54.630647,
           "lon": 5.55282
+        },
+        {
+          "lat": 54.633518,
+          "lon": 5.554975
+        },
+        {
+          "lat": 54.644498,
+          "lon": 5.562798
+        },
+        {
+          "lat": 54.652503,
+          "lon": 5.568495
+        },
+        {
+          "lat": 54.663773,
+          "lon": 5.576477
+        },
+        {
+          "lat": 54.670418,
+          "lon": 5.581315
+        },
+        {
+          "lat": 54.677382,
+          "lon": 5.586287
+        },
+        {
+          "lat": 54.686512,
+          "lon": 5.59272
+        },
+        {
+          "lat": 54.695838,
+          "lon": 5.599203
+        },
+        {
+          "lat": 54.703998,
+          "lon": 5.605247
+        },
+        {
+          "lat": 54.714672,
+          "lon": 5.613033
+        },
+        {
+          "lat": 54.725392,
+          "lon": 5.620795
+        },
+        {
+          "lat": 54.731707,
+          "lon": 5.62522
+        },
+        {
+          "lat": 54.74082,
+          "lon": 5.632245
+        },
+        {
+          "lat": 54.750035,
+          "lon": 5.639842
+        },
+        {
+          "lat": 54.75721,
+          "lon": 5.646625
+        },
+        {
+          "lat": 54.765627,
+          "lon": 5.653987
+        },
+        {
+          "lat": 54.773388,
+          "lon": 5.661175
+        },
+        {
+          "lat": 54.782232,
+          "lon": 5.66957
+        },
+        {
+          "lat": 54.79155,
+          "lon": 5.678438
+        },
+        {
+          "lat": 54.80197,
+          "lon": 5.68809
+        },
+        {
+          "lat": 54.8086,
+          "lon": 5.694258
+        },
+        {
+          "lat": 54.815822,
+          "lon": 5.70103
+        },
+        {
+          "lat": 54.822797,
+          "lon": 5.707427
+        },
+        {
+          "lat": 54.834055,
+          "lon": 5.717823
         }
       ],
-      "distance_nm": 491.0
+      "distance_nm": 504.5
     },
     "to_next_port": {
       "label": "Predicted path to Gothenburg",
@@ -1920,8 +2016,8 @@
       "source": "VesselFinder dm3 predicted route to the AIS destination",
       "points": [
         {
-          "lat": 54.630647,
-          "lon": 5.55282
+          "lat": 54.834055,
+          "lon": 5.717823
         },
         {
           "lat": 56.833325,
@@ -1976,7 +2072,7 @@
           "lon": 11.95224
         }
       ],
-      "distance_nm": 306.2
+      "distance_nm": 292.8
     },
     "onward_to_fremantle": {
       "label": "Expected route (not confirmed past Gothenburg), ending at Sausageworx Garage, Burswood",
@@ -2102,10 +2198,10 @@
     }
   },
   "distance": {
-    "travelled_nm": 491.0,
-    "remaining_nm": 11951.9,
-    "total_nm": 12442.9,
-    "progress_pct": 3.9,
+    "travelled_nm": 504.5,
+    "remaining_nm": 11938.5,
+    "total_nm": 12443.0,
+    "progress_pct": 4.1,
     "days_to_fremantle": 46,
     "remaining_is_estimate": true,
     "remaining_note": "Remaining distance is an estimate along the predicted path to Gothenburg and a plausible, unconfirmed ocean route to Fremantle."
