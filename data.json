@@ -1,6 +1,6 @@
 {
-  "as_of_utc": "2026-11-28T00:13:31Z",
-  "as_of_perth": "28 Nov 2026, 8:13am AWST",
+  "as_of_utc": "2026-11-28T02:22:19Z",
+  "as_of_perth": "28 Nov 2026, 10:22am AWST",
   "ship": {
     "name": "H\u00d6EGH TOKYO",
     "imo": "9285483",
@@ -42,12 +42,12 @@
     "wheels": "20-/21-Inch 911 GT3 forged Magnesium lightweight wheels, painted in Black (satin-gloss)"
   },
   "current": {
-    "ts_utc": "2026-11-28T00:13:31Z",
-    "perth": "28 Nov 2026, 8:13am AWST",
-    "lat": 54.185092,
-    "lon": 5.199405,
-    "cog": 22.4,
-    "sog_kn": 7.5,
+    "ts_utc": "2026-11-28T02:22:19Z",
+    "perth": "28 Nov 2026, 10:22am AWST",
+    "lat": 54.418868,
+    "lon": 5.380097,
+    "cog": 23.7,
+    "sog_kn": 7.2,
     "source": "vesselfinder_ml",
     "status": "Under way",
     "area": "North Sea, north of the Netherlands",
@@ -1702,9 +1702,117 @@
         {
           "lat": 54.185092,
           "lon": 5.199405
+        },
+        {
+          "lat": 54.188547,
+          "lon": 5.201805
+        },
+        {
+          "lat": 54.198348,
+          "lon": 5.208482
+        },
+        {
+          "lat": 54.207082,
+          "lon": 5.214755
+        },
+        {
+          "lat": 54.217965,
+          "lon": 5.222518
+        },
+        {
+          "lat": 54.225788,
+          "lon": 5.227987
+        },
+        {
+          "lat": 54.235877,
+          "lon": 5.234775
+        },
+        {
+          "lat": 54.244813,
+          "lon": 5.240775
+        },
+        {
+          "lat": 54.254502,
+          "lon": 5.247312
+        },
+        {
+          "lat": 54.263888,
+          "lon": 5.25365
+        },
+        {
+          "lat": 54.273255,
+          "lon": 5.25958
+        },
+        {
+          "lat": 54.282332,
+          "lon": 5.266043
+        },
+        {
+          "lat": 54.291685,
+          "lon": 5.272945
+        },
+        {
+          "lat": 54.301018,
+          "lon": 5.280347
+        },
+        {
+          "lat": 54.309635,
+          "lon": 5.287485
+        },
+        {
+          "lat": 54.319172,
+          "lon": 5.29539
+        },
+        {
+          "lat": 54.326895,
+          "lon": 5.302055
+        },
+        {
+          "lat": 54.336622,
+          "lon": 5.310652
+        },
+        {
+          "lat": 54.344938,
+          "lon": 5.31795
+        },
+        {
+          "lat": 54.354025,
+          "lon": 5.325788
+        },
+        {
+          "lat": 54.362915,
+          "lon": 5.333418
+        },
+        {
+          "lat": 54.371257,
+          "lon": 5.340183
+        },
+        {
+          "lat": 54.3798,
+          "lon": 5.347372
+        },
+        {
+          "lat": 54.389773,
+          "lon": 5.355902
+        },
+        {
+          "lat": 54.397863,
+          "lon": 5.362828
+        },
+        {
+          "lat": 54.406565,
+          "lon": 5.37018
+        },
+        {
+          "lat": 54.414722,
+          "lon": 5.377
+        },
+        {
+          "lat": 54.418868,
+          "lon": 5.380097
         }
       ],
-      "distance_nm": 461.4
+      "distance_nm": 476.9
     },
     "to_next_port": {
       "label": "Predicted path to Gothenburg",
@@ -1712,8 +1820,8 @@
       "source": "VesselFinder dm3 predicted route to the AIS destination",
       "points": [
         {
-          "lat": 54.185092,
-          "lon": 5.199405
+          "lat": 54.418868,
+          "lon": 5.380097
         },
         {
           "lat": 56.833325,
@@ -1768,7 +1876,7 @@
           "lon": 11.95224
         }
       ],
-      "distance_nm": 335.5
+      "distance_nm": 320.2
     },
     "onward_to_fremantle": {
       "label": "Expected route (not confirmed past Gothenburg), ending at Sausageworx Garage, Burswood",
@@ -1894,10 +2002,10 @@
     }
   },
   "distance": {
-    "travelled_nm": 461.4,
-    "remaining_nm": 11981.2,
-    "total_nm": 12442.6,
-    "progress_pct": 3.7,
+    "travelled_nm": 476.9,
+    "remaining_nm": 11965.9,
+    "total_nm": 12442.8,
+    "progress_pct": 3.8,
     "days_to_fremantle": 46,
     "remaining_is_estimate": true,
     "remaining_note": "Remaining distance is an estimate along the predicted path to Gothenburg and a plausible, unconfirmed ocean route to Fremantle."
