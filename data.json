@@ -1,6 +1,6 @@
 {
-  "as_of_utc": "2026-11-28T08:19:30Z",
-  "as_of_perth": "28 Nov 2026, 4:19pm AWST",
+  "as_of_utc": "2026-11-28T10:18:39Z",
+  "as_of_perth": "28 Nov 2026, 6:18pm AWST",
   "ship": {
     "name": "H\u00d6EGH TOKYO",
     "imo": "9285483",
@@ -42,11 +42,11 @@
     "wheels": "20-/21-Inch 911 GT3 forged Magnesium lightweight wheels, painted in Black (satin-gloss)"
   },
   "current": {
-    "ts_utc": "2026-11-28T08:19:30Z",
-    "perth": "28 Nov 2026, 4:19pm AWST",
-    "lat": 55.05504,
-    "lon": 5.865633,
-    "cog": 22.9,
+    "ts_utc": "2026-11-28T10:18:39Z",
+    "perth": "28 Nov 2026, 6:18pm AWST",
+    "lat": 55.285388,
+    "lon": 6.051885,
+    "cog": 25.5,
     "sog_kn": 7.5,
     "source": "vesselfinder_ml",
     "status": "Under way",
@@ -2286,9 +2286,109 @@
         {
           "lat": 55.05504,
           "lon": 5.865633
+        },
+        {
+          "lat": 55.057182,
+          "lon": 5.867262
+        },
+        {
+          "lat": 55.066397,
+          "lon": 5.87418
+        },
+        {
+          "lat": 55.077462,
+          "lon": 5.882557
+        },
+        {
+          "lat": 55.088895,
+          "lon": 5.891033
+        },
+        {
+          "lat": 55.093497,
+          "lon": 5.894502
+        },
+        {
+          "lat": 55.102692,
+          "lon": 5.901563
+        },
+        {
+          "lat": 55.112617,
+          "lon": 5.909333
+        },
+        {
+          "lat": 55.12072,
+          "lon": 5.91555
+        },
+        {
+          "lat": 55.130992,
+          "lon": 5.923623
+        },
+        {
+          "lat": 55.139652,
+          "lon": 5.930142
+        },
+        {
+          "lat": 55.149908,
+          "lon": 5.938143
+        },
+        {
+          "lat": 55.160447,
+          "lon": 5.946268
+        },
+        {
+          "lat": 55.170385,
+          "lon": 5.954138
+        },
+        {
+          "lat": 55.18169,
+          "lon": 5.96316
+        },
+        {
+          "lat": 55.191693,
+          "lon": 5.971548
+        },
+        {
+          "lat": 55.201623,
+          "lon": 5.979722
+        },
+        {
+          "lat": 55.212195,
+          "lon": 5.988485
+        },
+        {
+          "lat": 55.221625,
+          "lon": 5.996662
+        },
+        {
+          "lat": 55.231565,
+          "lon": 6.005352
+        },
+        {
+          "lat": 55.240865,
+          "lon": 6.013472
+        },
+        {
+          "lat": 55.250113,
+          "lon": 6.021663
+        },
+        {
+          "lat": 55.259845,
+          "lon": 6.029922
+        },
+        {
+          "lat": 55.269427,
+          "lon": 6.037928
+        },
+        {
+          "lat": 55.278497,
+          "lon": 6.046037
+        },
+        {
+          "lat": 55.285388,
+          "lon": 6.051885
         }
       ],
-      "distance_nm": 518.7
+      "distance_nm": 533.9
     },
     "to_next_port": {
       "label": "Predicted path to Gothenburg",
@@ -2296,12 +2396,8 @@
       "source": "VesselFinder dm3 predicted route to the AIS destination",
       "points": [
         {
-          "lat": 55.05504,
-          "lon": 5.865633
-        },
-        {
-          "lat": 56.833325,
-          "lon": 8.03682
+          "lat": 55.285388,
+          "lon": 6.051885
         },
         {
           "lat": 57.121335,
@@ -2352,7 +2448,7 @@
           "lon": 11.95224
         }
       ],
-      "distance_nm": 278.8
+      "distance_nm": 263.8
     },
     "onward_to_fremantle": {
       "label": "H\u00f6egh published schedule (voyage 129), ending at Sausageworx Garage, Burswood",
@@ -2730,10 +2826,10 @@
     }
   },
   "distance": {
-    "travelled_nm": 518.7,
-    "remaining_nm": 12722.5,
-    "total_nm": 13241.2,
-    "progress_pct": 3.9,
+    "travelled_nm": 533.9,
+    "remaining_nm": 12707.5,
+    "total_nm": 13241.4,
+    "progress_pct": 4.0,
     "days_to_fremantle": 46,
     "remaining_is_estimate": true,
     "remaining_note": "Remaining distance is an estimate along VesselFinder's predicted path to Gothenburg and H\u00f6egh's published voyage 129 schedule from Gothenburg to Fremantle, then a short hop to Burswood."
