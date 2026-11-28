@@ -1,6 +1,6 @@
 {
-  "as_of_utc": "2026-11-28T02:22:19Z",
-  "as_of_perth": "28 Nov 2026, 10:22am AWST",
+  "as_of_utc": "2026-11-28T04:23:29Z",
+  "as_of_perth": "28 Nov 2026, 12:23pm AWST",
   "ship": {
     "name": "H\u00d6EGH TOKYO",
     "imo": "9285483",
@@ -42,12 +42,12 @@
     "wheels": "20-/21-Inch 911 GT3 forged Magnesium lightweight wheels, painted in Black (satin-gloss)"
   },
   "current": {
-    "ts_utc": "2026-11-28T02:22:19Z",
-    "perth": "28 Nov 2026, 10:22am AWST",
-    "lat": 54.418868,
-    "lon": 5.380097,
-    "cog": 23.7,
-    "sog_kn": 7.2,
+    "ts_utc": "2026-11-28T04:23:29Z",
+    "perth": "28 Nov 2026, 12:23pm AWST",
+    "lat": 54.630647,
+    "lon": 5.55282,
+    "cog": 23.3,
+    "sog_kn": 7.0,
     "source": "vesselfinder_ml",
     "status": "Under way",
     "area": "North Sea, north of the Netherlands",
@@ -1810,9 +1810,109 @@
         {
           "lat": 54.418868,
           "lon": 5.380097
+        },
+        {
+          "lat": 54.423942,
+          "lon": 5.383888
+        },
+        {
+          "lat": 54.432788,
+          "lon": 5.390658
+        },
+        {
+          "lat": 54.441925,
+          "lon": 5.397228
+        },
+        {
+          "lat": 54.45137,
+          "lon": 5.404038
+        },
+        {
+          "lat": 54.460023,
+          "lon": 5.41049
+        },
+        {
+          "lat": 54.468017,
+          "lon": 5.416567
+        },
+        {
+          "lat": 54.478015,
+          "lon": 5.423855
+        },
+        {
+          "lat": 54.488825,
+          "lon": 5.431927
+        },
+        {
+          "lat": 54.496538,
+          "lon": 5.43779
+        },
+        {
+          "lat": 54.507805,
+          "lon": 5.446313
+        },
+        {
+          "lat": 54.517985,
+          "lon": 5.45624
+        },
+        {
+          "lat": 54.521575,
+          "lon": 5.46051
+        },
+        {
+          "lat": 54.532747,
+          "lon": 5.473423
+        },
+        {
+          "lat": 54.538078,
+          "lon": 5.479575
+        },
+        {
+          "lat": 54.547027,
+          "lon": 5.490252
+        },
+        {
+          "lat": 54.553985,
+          "lon": 5.49759
+        },
+        {
+          "lat": 54.562912,
+          "lon": 5.504605
+        },
+        {
+          "lat": 54.572713,
+          "lon": 5.511392
+        },
+        {
+          "lat": 54.58412,
+          "lon": 5.519455
+        },
+        {
+          "lat": 54.589788,
+          "lon": 5.523438
+        },
+        {
+          "lat": 54.601463,
+          "lon": 5.531688
+        },
+        {
+          "lat": 54.607705,
+          "lon": 5.536047
+        },
+        {
+          "lat": 54.618922,
+          "lon": 5.544168
+        },
+        {
+          "lat": 54.627457,
+          "lon": 5.550432
+        },
+        {
+          "lat": 54.630647,
+          "lon": 5.55282
         }
       ],
-      "distance_nm": 476.9
+      "distance_nm": 491.0
     },
     "to_next_port": {
       "label": "Predicted path to Gothenburg",
@@ -1820,8 +1920,8 @@
       "source": "VesselFinder dm3 predicted route to the AIS destination",
       "points": [
         {
-          "lat": 54.418868,
-          "lon": 5.380097
+          "lat": 54.630647,
+          "lon": 5.55282
         },
         {
           "lat": 56.833325,
@@ -1876,7 +1976,7 @@
           "lon": 11.95224
         }
       ],
-      "distance_nm": 320.2
+      "distance_nm": 306.2
     },
     "onward_to_fremantle": {
       "label": "Expected route (not confirmed past Gothenburg), ending at Sausageworx Garage, Burswood",
@@ -2002,10 +2102,10 @@
     }
   },
   "distance": {
-    "travelled_nm": 476.9,
-    "remaining_nm": 11965.9,
-    "total_nm": 12442.8,
-    "progress_pct": 3.8,
+    "travelled_nm": 491.0,
+    "remaining_nm": 11951.9,
+    "total_nm": 12442.9,
+    "progress_pct": 3.9,
     "days_to_fremantle": 46,
     "remaining_is_estimate": true,
     "remaining_note": "Remaining distance is an estimate along the predicted path to Gothenburg and a plausible, unconfirmed ocean route to Fremantle."
