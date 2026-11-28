@@ -221,6 +221,7 @@
     .legend .track { border-color: var(--track); }
     .legend .pred { border-color: var(--predicted); border-top-style: dashed; }
     .legend .onw { border-color: var(--onward); border-top-style: dashed; }
+    .legend .cont { border-color: #6e6c66; border-top-style: dashed; opacity: 0.7; }
     .map-wrap {
       position: relative;
       background: var(--bg);
@@ -287,7 +288,7 @@
 <body>
   <header class="site">
     <h1>AG GT3 Delivery</h1>
-    <p class="lede">A 911 GT3 is loaded on Höegh Tokyo and under way in the North Sea, now bound for Gothenburg, then on an unconfirmed ocean route to Fremantle and Sausageworx Garage, Burswood.</p>
+    <p class="lede">A 911 GT3 is loaded on Höegh Tokyo and under way in the North Sea, now bound for Gothenburg, then Fremantle on Höegh's published voyage 129 schedule, and on to Sausageworx Garage, Burswood.</p>
     <p class="updated" id="updated">Last updated —</p>
   </header>
 
@@ -329,21 +330,21 @@
 
     <div class="callout">
       <strong>Next port is now Gothenburg.</strong>
-      AIS changed on the afternoon of 27 Nov from Zeebrugge, which had been due at 9:00pm AWST that evening, to Gothenburg, due 29 Nov 2026, 2:30am AWST. The ship turned north at about 6:20pm AWST and did not call at Zeebrugge. No ports of call after Gothenburg are confirmed.
+      AIS changed on the afternoon of 27 Nov from Zeebrugge, then due that evening, to Gothenburg, now due 30 Nov 2026, 3:00am AWST. The ship turned north at about 6:20pm AWST and did not call at Zeebrugge on that approach. Höegh's published voyage 129 schedule still has Zeebrugge after Gothenburg, on 3–5 Dec, then Southampton, Santander, Port Elizabeth, Durban and Fremantle.
     </div>
 
     <section id="status">
       <h2>Status</h2>
-      <p>Höegh Tokyo is under way in the North Sea with the GT3 on board, heading for Gothenburg, then Fremantle on 13 Jan 2027, and on to Sausageworx Garage, Burswood after discharge.</p>
+      <p>Höegh Tokyo is under way in the North Sea with the GT3 on board, heading for Gothenburg, then on Höegh's published voyage 129 schedule to Fremantle on 13 Jan 2027, and on to Sausageworx Garage, Burswood after discharge.</p>
       <div class="metrics" id="metrics"></div>
       <p class="aside">Shipping from Germany: 7 weeks. Still beats a Mustang leaving Cars &amp; Coffee.</p>
       <table class="props" id="status-props"></table>
-      <p class="caption">Remaining distance is an estimate along VesselFinder's predicted path to Gothenburg and a plausible ocean route from there to Fremantle. Ports of call after Gothenburg are not confirmed. The last dashed hop after Fremantle is the short run to Burswood.</p>
+      <p class="caption">Remaining distance is an estimate along VesselFinder's predicted path to Gothenburg and Höegh's published voyage 129 schedule from Gothenburg to Fremantle, then a short hop to Burswood.</p>
     </section>
 
     <section id="map">
       <h2>Voyage map</h2>
-      <p class="caption">The solid line is the AIS track since leaving Bremerhaven. The first dashed line is VesselFinder's predicted path to Gothenburg. The second dashed line is an expected onward route via the English Channel, West Africa and the Cape of Good Hope, then a short hop from Fremantle to Sausageworx Garage in Burswood; it is not confirmed past Gothenburg. The silver 911 marks the current position of the GT3 on Höegh Tokyo. The oil-can marks someone waiting in Perth, and the workshop badge marks Sausageworx Garage, Burswood. Click a marker or a port for details.</p>
+      <p class="caption">The solid line is the AIS track since leaving Bremerhaven. The first dashed line is VesselFinder's predicted path to Gothenburg. The second dashed line follows Höegh's published voyage 129 schedule — Gothenburg, Zeebrugge, Southampton, Santander, Port Elizabeth, Durban and Fremantle — then a short hop from Fremantle to Sausageworx Garage in Burswood. The faint line east of Fremantle is the ship continuing to Melbourne, Port Kembla and Auckland after the car is discharged. The silver 911 marks the current position of the GT3 on Höegh Tokyo. The oil-can marks someone waiting in Perth, and the workshop badge marks Sausageworx Garage, Burswood. Click a marker or a port for details.</p>
       <div class="map-toolbar">
         <div class="seg" role="group" aria-label="Map extent">
           <button type="button" id="btn-voyage" aria-pressed="true">Full voyage</button>
@@ -356,15 +357,17 @@
       <div class="legend">
         <span><i class="track"></i>AIS track since leaving Bremerhaven</span>
         <span><i class="pred"></i>Predicted path to Gothenburg</span>
-        <span><i class="onw"></i>Expected route (not confirmed past Gothenburg)</span>
+        <span><i class="onw"></i>Höegh published schedule (voyage 129)</span>
+        <span><i class="cont"></i>Ship continues after Fremantle</span>
       </div>
       <div class="map-wrap" id="map-wrap">
-        <svg id="voyage-map" viewBox="0 0 1280 680" width="1280" height="680" role="img" aria-label="Map of Höegh Tokyo from Europe to Fremantle, with the AIS track and expected route"></svg>
+        <svg id="voyage-map" viewBox="0 0 1280 680" width="1280" height="680" role="img" aria-label="Map of Höegh Tokyo from Europe to Fremantle, with the AIS track and Höegh published voyage 129 schedule"></svg>
       </div>
     </section>
 
     <section id="timeline">
       <h2>Port calls and timeline</h2>
+      <p class="caption">Port dates after Bremerhaven are from Höegh's published sailing schedule for voyage 129. Fremantle shows the cargo-record ETA of 13 Jan, within the Höegh window of 12–16 Jan.</p>
       <div class="table-wrap">
         <table class="table">
           <thead>
@@ -378,9 +381,14 @@
             <tr><td>Bremerhaven departure</td><td>26 Nov 2026, 11:51pm</td><td>Official ATD. The GT3 is on board.</td></tr>
             <tr><td>Turned north</td><td>27 Nov 2026, 6:20pm</td><td>Left the Zeebrugge approach. AIS destination changed to Gothenburg.</td></tr>
             <tr><td>AIS position</td><td id="ais-when">27 Nov 2026, 6:49pm</td><td id="ais-note"></td></tr>
-            <tr><td>Gothenburg ETA</td><td>29 Nov 2026, 2:30am</td><td>Confirmed AIS destination. Not yet arrived.</td></tr>
-            <tr><td>English Channel, West Africa, Cape of Good Hope</td><td>Unconfirmed</td><td>Expected ocean legs only. No further ports of call are confirmed.</td></tr>
-            <tr><td>Fremantle ETA</td><td>13 Jan 2027</td><td>Höegh cargo record. Date only; no time of day is given.</td></tr>
+            <tr><td>Gothenburg</td><td>30 Nov 2026</td><td>Höegh published same-day call, voyage 129. AIS ETA 30 Nov 2026, 3:00am AWST.</td></tr>
+            <tr><td>Zeebrugge</td><td>3–5 Dec 2026</td><td>Höegh published schedule, voyage 129. After Gothenburg; the earlier northbound approach was skipped.</td></tr>
+            <tr><td>Southampton</td><td>7–8 Dec 2026</td><td>Höegh published schedule, voyage 129.</td></tr>
+            <tr><td>Santander</td><td>10 Dec 2026</td><td>Höegh published schedule, voyage 129. Same-day call.</td></tr>
+            <tr><td>Port Elizabeth</td><td>26–28 Dec 2026</td><td>Höegh published schedule, voyage 129. Window spans both Höegh schedule systems, which differ by a day.</td></tr>
+            <tr><td>Durban</td><td>28 Dec 2026–1 Jan 2027</td><td>Höegh published schedule, voyage 129. Window spans both Höegh schedule systems, which differ by a day.</td></tr>
+            <tr><td>Fremantle ETA</td><td>13 Jan 2027</td><td>Cargo-record ETA. Höegh sailing-schedule window 12–16 Jan 2027. The car leaves the ship here.</td></tr>
+            <tr><td>Melbourne, Port Kembla, Auckland</td><td>19–29 Jan 2027</td><td>Ship continues after the car is discharged at Fremantle. Höegh windows: Melbourne 19–22 Jan, Port Kembla 22–25 Jan, Auckland 27–29 Jan.</td></tr>
             <tr><td>Sausageworx Garage, Burswood</td><td>After discharge</td><td>Final destination after the ship arrives at Fremantle.</td></tr>
           </tbody>
         </table>
@@ -505,7 +513,8 @@
     <section id="sources">
       <h2>Sources</h2>
       <p><a href="https://www.vesselfinder.com/vessels/details/9285483">Höegh Tokyo on VesselFinder</a></p>
-      <p class="caption">Ship photograph by Andrew Priest, via <a href="https://www.vesselfinder.com/ship-photos/156660">VesselFinder ship photos</a>. Land outlines from Natural Earth 110m. Positions from VesselFinder AIS.</p>
+      <p><a href="https://www.hoeghautoliners.com/sailing-schedule">Höegh sailing schedule</a></p>
+      <p class="caption">Ship photograph by Andrew Priest, via <a href="https://www.vesselfinder.com/ship-photos/156660">VesselFinder ship photos</a>. Land outlines from Natural Earth 110m. Positions from VesselFinder AIS. Port rotation from Höegh's published sailing schedule for voyage 129.</p>
     </section>
   </main>
 
@@ -517,8 +526,8 @@
   (function () {
     const MAP_W = 1280, MAP_H = 680, PAD = 18;
     const VIEWS = {
-      northsea: { lonMin: -1.3, lonMax: 13.4, latMin: 50.55, latMax: 58.95, projection: "mercator" },
-      voyage: { lonMin: -28, lonMax: 128, latMin: -40, latMax: 64, projection: "equirectangular" }
+      northsea: { lonMin: -2.2, lonMax: 13.4, latMin: 50.55, latMax: 58.95, projection: "mercator" },
+      voyage: { lonMin: -28, lonMax: 178, latMin: -45, latMax: 64, projection: "equirectangular" }
     };
     const OFFSETS = {
       john: { dx: -48, dy: -56 },
@@ -604,6 +613,18 @@
         "stroke-width": (0.7 / scale).toFixed(3)
       }, g);
 
+      if (voyage.routes.ship_continues && voyage.routes.ship_continues.points) {
+        el("path", {
+          d: linePath(voyage.routes.ship_continues.points, view),
+          fill: "none",
+          stroke: "#6e6c66",
+          "stroke-width": (1.6 / scale).toFixed(3),
+          "stroke-dasharray": (5 / scale) + " " + (7 / scale),
+          "stroke-linecap": "round",
+          "stroke-linejoin": "round",
+          opacity: "0.55"
+        }, g);
+      }
       el("path", {
         d: linePath(voyage.routes.onward_to_fremantle.points, view),
         fill: "none",
@@ -634,38 +655,60 @@
       voyage.ports.forEach(function (port) {
         if (!inView(port.lat, port.lon, view)) return;
         const pt = project(port.lon, port.lat, view);
-        const right = port.id !== "antwerp";
+        const faint = port.role === "ship_continues";
+        const anchor = port.label_anchor || (port.id === "antwerp" ? "end" : "start");
+        const dx = (port.label_dx != null) ? port.label_dx : (anchor === "end" ? -9 : 9);
+        const dy = (port.label_dy != null) ? port.label_dy : 4;
+        const grp = el("g", { opacity: faint ? "0.55" : "1" }, g);
         el("circle", {
           cx: pt.x, cy: pt.y,
           r: viewId === "voyage" ? 4.5 : 5,
-          fill: port.role === "next" ? "#e0a85c" : "#f3f1eb",
+          fill: faint ? "#a19e96" : (port.role === "next" ? "#e0a85c" : "#f3f1eb"),
           stroke: "#101114",
           "stroke-width": 1.5
-        }, g);
+        }, grp);
         const label = el("text", {
-          x: pt.x + (right ? 9 : -9),
-          y: pt.y + 4,
-          "text-anchor": right ? "start" : "end",
-          fill: "#f3f1eb",
+          x: pt.x + dx,
+          y: pt.y + dy,
+          "text-anchor": anchor,
+          fill: faint ? "#a19e96" : "#f3f1eb",
           "font-family": "ui-sans-serif, system-ui, sans-serif",
           "font-size": viewId === "voyage" ? 11 : 12
-        }, g);
+        }, grp);
         label.textContent = port.name;
+        if (port.date_label) {
+          const dl = el("text", {
+            x: pt.x + dx,
+            y: pt.y + dy + (viewId === "voyage" ? 11 : 12),
+            "text-anchor": anchor,
+            fill: "#a19e96",
+            "font-family": "ui-sans-serif, system-ui, sans-serif",
+            "font-size": viewId === "voyage" ? 9 : 10
+          }, grp);
+          dl.textContent = port.date_label;
+        }
       });
 
       if (viewId === "voyage") {
-        const cape = project(22, -28, view);
+        const cape = project(8, -16, view);
         const t1 = el("text", {
           x: cape.x, y: cape.y, fill: "#a19e96",
           "font-family": "ui-sans-serif, system-ui, sans-serif", "font-size": 12
         }, g);
-        t1.textContent = "Expected route (not confirmed past Gothenburg)";
+        t1.textContent = "Höegh published schedule (voyage 129)";
         const hope = project(18.5, -34.5, view);
         const t2 = el("text", {
           x: hope.x + 8, y: hope.y + 14, fill: "#6e6c66",
           "font-family": "ui-sans-serif, system-ui, sans-serif", "font-size": 11
         }, g);
         t2.textContent = "Cape of Good Hope";
+        const cont = project(132, -39.5, view);
+        const t3 = el("text", {
+          x: cont.x, y: cont.y, fill: "#6e6c66",
+          "font-family": "ui-sans-serif, system-ui, sans-serif", "font-size": 11,
+          opacity: "0.7"
+        }, g);
+        t3.textContent = "Ship continues after Fremantle";
       }
 
       function placeIcon(id, lat, lon, href, size, label, labelAlign) {
@@ -832,7 +875,7 @@
         const pt = project(port.lon, port.lat, view);
         const dx = world.x - pt.x, dy = world.y - pt.y;
         if (dx * dx + dy * dy <= hitR * hitR) {
-          popup = { x: pt.x, y: pt.y, title: port.name, lines: [port.detail] };
+          popup = { x: pt.x, y: pt.y, title: port.name, lines: port.date_label ? [port.date_label, port.detail] : [port.detail] };
           draw();
           return;
         }

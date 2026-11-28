@@ -78,32 +78,192 @@
       "name": "Antwerp",
       "lat": 51.2702,
       "lon": 4.2184,
+      "locode": "BEANR",
       "role": "prior_ship_call",
-      "detail": "Departed 24 Nov 2026, 10:51am AWST, before the car was loaded."
+      "eta": "2026-11-19",
+      "etd": "2026-11-24",
+      "date_label": "Sailed 24 Nov",
+      "detail": "Departed 24 Nov 2026, 10:51am AWST, before the car was loaded.",
+      "source": "AIS / ship's previous call",
+      "label_anchor": "end",
+      "label_dx": -9,
+      "label_dy": -8
     },
     {
       "id": "bremerhaven",
       "name": "Bremerhaven",
       "lat": 53.56938,
       "lon": 8.5498,
+      "locode": "DEBRV",
       "role": "load",
-      "detail": "Car received and loaded 25 Nov 2026. Ship arrived 25 Nov, 12:07pm AWST; sailed 26 Nov, 11:51pm AWST."
+      "eta": "2026-11-25",
+      "etd": "2026-11-26",
+      "date_label": "Loaded 25 Nov",
+      "detail": "Car received and loaded 25 Nov 2026. Ship arrived 25 Nov, 12:07pm AWST; sailed 26 Nov, 11:51pm AWST.",
+      "source": "H\u00f6egh cargo record and AIS",
+      "label_anchor": "start",
+      "label_dx": 9,
+      "label_dy": -10
     },
     {
       "id": "gothenburg",
       "name": "Gothenburg",
       "lat": 57.69447,
       "lon": 11.95224,
+      "locode": "SEGOT",
       "role": "next",
-      "detail": "AIS destination. ETA 30 Nov 2026, 3:00am AWST."
+      "eta": "2026-11-30",
+      "etd": "2026-11-30",
+      "date_label": "30 Nov",
+      "detail": "H\u00f6egh published call, 30 Nov 2026 (same-day). AIS destination, ETA 30 Nov 2026, 3:00am AWST.",
+      "source": "H\u00f6egh sailing schedule, voyage 129, and AIS",
+      "label_anchor": "start",
+      "label_dx": 9,
+      "label_dy": 4
+    },
+    {
+      "id": "zeebrugge",
+      "name": "Zeebrugge",
+      "lat": 51.331,
+      "lon": 3.207,
+      "locode": "BEZEE",
+      "role": "scheduled",
+      "eta": "2026-12-03",
+      "etd": "2026-12-05",
+      "date_label": "3\u20135 Dec",
+      "detail": "H\u00f6egh published schedule, voyage 129. ETA 3 Dec 2026, ETD 5 Dec 2026. The ship skipped Zeebrugge on the way north from Bremerhaven; this is the later scheduled call after Gothenburg.",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "start",
+      "label_dx": 10,
+      "label_dy": 16
+    },
+    {
+      "id": "southampton",
+      "name": "Southampton",
+      "lat": 50.8965,
+      "lon": -1.3968,
+      "locode": "GBSOU",
+      "role": "scheduled",
+      "eta": "2026-12-07",
+      "etd": "2026-12-08",
+      "date_label": "7\u20138 Dec",
+      "detail": "H\u00f6egh published schedule, voyage 129. ETA 7 Dec 2026, ETD 8 Dec 2026.",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "end",
+      "label_dx": -9,
+      "label_dy": 14
+    },
+    {
+      "id": "santander",
+      "name": "Santander",
+      "lat": 43.4618,
+      "lon": -3.8044,
+      "locode": "ESSDR",
+      "role": "scheduled",
+      "eta": "2026-12-10",
+      "etd": "2026-12-10",
+      "date_label": "10 Dec",
+      "detail": "H\u00f6egh published schedule, voyage 129. Same-day call, 10 Dec 2026.",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "end",
+      "label_dx": -9,
+      "label_dy": 4
+    },
+    {
+      "id": "port_elizabeth",
+      "name": "Port Elizabeth",
+      "lat": -33.961,
+      "lon": 25.619,
+      "locode": "ZAPLZ",
+      "role": "scheduled",
+      "eta": "2026-12-26",
+      "etd": "2026-12-28",
+      "date_label": "26\u201328 Dec",
+      "detail": "H\u00f6egh published schedule, voyage 129. Window 26\u201328 Dec 2026 (H\u00f6egh's website API and legacy schedule differ by one day).",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "end",
+      "label_dx": -9,
+      "label_dy": 4
+    },
+    {
+      "id": "durban",
+      "name": "Durban",
+      "lat": -29.869,
+      "lon": 31.025,
+      "locode": "ZADUR",
+      "role": "scheduled",
+      "eta": "2026-12-28",
+      "etd": "2027-01-01",
+      "date_label": "28 Dec\u20131 Jan",
+      "detail": "H\u00f6egh published schedule, voyage 129. Window 28 Dec 2026 to 1 Jan 2027 (H\u00f6egh's website API and legacy schedule differ by one day).",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "start",
+      "label_dx": 9,
+      "label_dy": 4
     },
     {
       "id": "fremantle",
       "name": "Fremantle",
       "lat": -32.05,
       "lon": 115.75,
+      "locode": "AUFRE",
       "role": "discharge",
-      "detail": "H\u00f6egh discharge port. ETA 13 Jan 2027."
+      "eta": "2027-01-13",
+      "etd": "2027-01-16",
+      "date_label": "13 Jan (cargo ETA)",
+      "detail": "H\u00f6egh discharge port. Cargo-record ETA 13 Jan 2027. H\u00f6egh sailing-schedule window 12\u201316 Jan 2027. The car leaves the ship here.",
+      "source": "H\u00f6egh cargo record (ETA) and sailing schedule (window)",
+      "label_anchor": "end",
+      "label_dx": -12,
+      "label_dy": -20
+    },
+    {
+      "id": "melbourne",
+      "name": "Melbourne",
+      "lat": -37.846,
+      "lon": 144.908,
+      "locode": "AUMEL",
+      "role": "ship_continues",
+      "eta": "2027-01-19",
+      "etd": "2027-01-22",
+      "date_label": "19\u201322 Jan",
+      "detail": "Ship continues after the car is discharged at Fremantle. H\u00f6egh published window 19\u201322 Jan 2027.",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "start",
+      "label_dx": 9,
+      "label_dy": 4
+    },
+    {
+      "id": "port_kembla",
+      "name": "Port Kembla",
+      "lat": -34.468,
+      "lon": 150.899,
+      "locode": "AUPKL",
+      "role": "ship_continues",
+      "eta": "2027-01-22",
+      "etd": "2027-01-25",
+      "date_label": "22\u201325 Jan",
+      "detail": "Ship continues after the car is discharged at Fremantle. H\u00f6egh published window 22\u201325 Jan 2027.",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "start",
+      "label_dx": 9,
+      "label_dy": -8
+    },
+    {
+      "id": "auckland",
+      "name": "Auckland",
+      "lat": -36.843,
+      "lon": 174.768,
+      "locode": "NZAKL",
+      "role": "ship_continues",
+      "eta": "2027-01-27",
+      "etd": "2027-01-29",
+      "date_label": "27\u201329 Jan",
+      "detail": "Ship continues after the car is discharged at Fremantle. H\u00f6egh published window 27\u201329 Jan 2027.",
+      "source": "H\u00f6egh sailing schedule, voyage 129",
+      "label_anchor": "end",
+      "label_dx": -9,
+      "label_dy": 4
     }
   ],
   "routes": {
@@ -2075,9 +2235,10 @@
       "distance_nm": 292.8
     },
     "onward_to_fremantle": {
-      "label": "Expected route (not confirmed past Gothenburg), ending at Sausageworx Garage, Burswood",
+      "label": "H\u00f6egh published schedule (voyage 129), ending at Sausageworx Garage, Burswood",
       "style": "dashed",
-      "source": "Plausible ocean route via the English Channel, West Africa and the Cape of Good Hope. No further ports of call are confirmed after Gothenburg.",
+      "source": "H\u00f6egh sailing schedule for voyage 129: Gothenburg, Zeebrugge, Southampton, Santander, Port Elizabeth, Durban and Fremantle, then a short hop to Sausageworx Garage, Burswood. Sea-lane via the English Channel, Bay of Biscay, West Africa and the Cape of Good Hope.",
+      "distance_nm": 12443.7,
       "points": [
         {
           "lat": 57.69447,
@@ -2085,12 +2246,17 @@
           "note": "Gothenburg"
         },
         {
-          "lat": 57.7,
-          "lon": 10.7
+          "lat": 57.75,
+          "lon": 11.55
         },
         {
-          "lat": 57.5,
-          "lon": 8.5
+          "lat": 57.8,
+          "lon": 10.2,
+          "note": "North of Skagen"
+        },
+        {
+          "lat": 57.4,
+          "lon": 8.0
         },
         {
           "lat": 56.5,
@@ -2102,16 +2268,67 @@
         },
         {
           "lat": 52.5,
-          "lon": 3.2
+          "lon": 3.0
         },
         {
-          "lat": 51.1,
+          "lat": 51.5,
+          "lon": 2.8
+        },
+        {
+          "lat": 51.331,
+          "lon": 3.207,
+          "note": "Zeebrugge"
+        },
+        {
+          "lat": 51.4,
+          "lon": 2.4
+        },
+        {
+          "lat": 51.15,
           "lon": 1.6,
           "note": "English Channel"
         },
         {
-          "lat": 50.0,
-          "lon": -1.0
+          "lat": 50.85,
+          "lon": 1.1
+        },
+        {
+          "lat": 50.55,
+          "lon": 0.2
+        },
+        {
+          "lat": 50.45,
+          "lon": -1.2,
+          "note": "South of the Isle of Wight"
+        },
+        {
+          "lat": 50.55,
+          "lon": -1.6
+        },
+        {
+          "lat": 50.7,
+          "lon": -1.55
+        },
+        {
+          "lat": 50.8965,
+          "lon": -1.3968,
+          "note": "Southampton"
+        },
+        {
+          "lat": 50.7,
+          "lon": -1.55
+        },
+        {
+          "lat": 50.45,
+          "lon": -1.6
+        },
+        {
+          "lat": 50.2,
+          "lon": -2.0
+        },
+        {
+          "lat": 49.5,
+          "lon": -4.5
         },
         {
           "lat": 48.7,
@@ -2119,20 +2336,58 @@
           "note": "Ushant"
         },
         {
+          "lat": 47.0,
+          "lon": -7.0
+        },
+        {
           "lat": 45.0,
-          "lon": -9.0
+          "lon": -7.8,
+          "note": "Bay of Biscay"
+        },
+        {
+          "lat": 44.0,
+          "lon": -6.0
+        },
+        {
+          "lat": 43.7,
+          "lon": -4.5
+        },
+        {
+          "lat": 43.62,
+          "lon": -3.85
+        },
+        {
+          "lat": 43.4618,
+          "lon": -3.8044,
+          "note": "Santander"
+        },
+        {
+          "lat": 43.62,
+          "lon": -3.85
+        },
+        {
+          "lat": 43.75,
+          "lon": -5.5
+        },
+        {
+          "lat": 43.8,
+          "lon": -8.0
+        },
+        {
+          "lat": 43.4,
+          "lon": -10.2
         },
         {
           "lat": 40.0,
-          "lon": -11.0
+          "lon": -11.5
         },
         {
           "lat": 36.0,
-          "lon": -12.5
+          "lon": -13.0
         },
         {
           "lat": 28.0,
-          "lon": -16.5
+          "lon": -16.8
         },
         {
           "lat": 16.0,
@@ -2155,25 +2410,72 @@
           "lon": 13.0
         },
         {
-          "lat": -34.5,
-          "lon": 18.5,
+          "lat": -35.4,
+          "lon": 18.2,
           "note": "Cape of Good Hope"
         },
         {
           "lat": -36.0,
-          "lon": 25.0
+          "lon": 20.5
+        },
+        {
+          "lat": -35.6,
+          "lon": 23.5
+        },
+        {
+          "lat": -34.8,
+          "lon": 25.2
+        },
+        {
+          "lat": -33.961,
+          "lon": 25.619,
+          "note": "Port Elizabeth"
+        },
+        {
+          "lat": -34.5,
+          "lon": 26.4
+        },
+        {
+          "lat": -34.3,
+          "lon": 27.8
+        },
+        {
+          "lat": -33.0,
+          "lon": 29.1
+        },
+        {
+          "lat": -31.2,
+          "lon": 30.5
+        },
+        {
+          "lat": -29.869,
+          "lon": 31.025,
+          "note": "Durban"
+        },
+        {
+          "lat": -31.0,
+          "lon": 33.0
+        },
+        {
+          "lat": -33.0,
+          "lon": 38.0
         },
         {
           "lat": -35.0,
-          "lon": 40.0
+          "lon": 45.0,
+          "note": "South of Madagascar"
+        },
+        {
+          "lat": -35.5,
+          "lon": 55.0
+        },
+        {
+          "lat": -35.0,
+          "lon": 70.0
         },
         {
           "lat": -34.0,
-          "lon": 60.0
-        },
-        {
-          "lat": -33.5,
-          "lon": 80.0
+          "lon": 85.0
         },
         {
           "lat": -33.0,
@@ -2193,20 +2495,138 @@
           "lon": 115.89,
           "note": "Sausageworx Garage, Burswood"
         }
-      ],
-      "distance_nm": 11645.7
+      ]
+    },
+    "ship_continues": {
+      "label": "Ship continues after Fremantle",
+      "style": "dashed_faint",
+      "source": "H\u00f6egh published schedule, voyage 129, after discharge at Fremantle: Melbourne, Port Kembla and Auckland.",
+      "distance_nm": 3516.0,
+      "points": [
+        {
+          "lat": -32.05,
+          "lon": 115.75,
+          "note": "Fremantle"
+        },
+        {
+          "lat": -32.5,
+          "lon": 115.2
+        },
+        {
+          "lat": -33.2,
+          "lon": 114.7
+        },
+        {
+          "lat": -34.8,
+          "lon": 114.4,
+          "note": "Cape Leeuwin, offshore"
+        },
+        {
+          "lat": -36.0,
+          "lon": 116.5
+        },
+        {
+          "lat": -36.5,
+          "lon": 125.0
+        },
+        {
+          "lat": -37.0,
+          "lon": 132.0
+        },
+        {
+          "lat": -38.0,
+          "lon": 138.0
+        },
+        {
+          "lat": -39.2,
+          "lon": 142.0
+        },
+        {
+          "lat": -39.2,
+          "lon": 144.2
+        },
+        {
+          "lat": -38.35,
+          "lon": 144.63,
+          "note": "Port Phillip heads"
+        },
+        {
+          "lat": -37.846,
+          "lon": 144.908,
+          "note": "Melbourne"
+        },
+        {
+          "lat": -38.35,
+          "lon": 144.63
+        },
+        {
+          "lat": -39.2,
+          "lon": 145.5
+        },
+        {
+          "lat": -39.4,
+          "lon": 147.5,
+          "note": "Bass Strait"
+        },
+        {
+          "lat": -38.0,
+          "lon": 150.5
+        },
+        {
+          "lat": -35.5,
+          "lon": 151.6
+        },
+        {
+          "lat": -34.47,
+          "lon": 151.25
+        },
+        {
+          "lat": -34.468,
+          "lon": 150.899,
+          "note": "Port Kembla"
+        },
+        {
+          "lat": -34.6,
+          "lon": 152.2
+        },
+        {
+          "lat": -35.5,
+          "lon": 160.0
+        },
+        {
+          "lat": -36.0,
+          "lon": 168.0
+        },
+        {
+          "lat": -36.5,
+          "lon": 173.5
+        },
+        {
+          "lat": -36.843,
+          "lon": 174.768,
+          "note": "Auckland"
+        }
+      ]
     }
   },
   "distance": {
     "travelled_nm": 504.5,
-    "remaining_nm": 11938.5,
-    "total_nm": 12443.0,
-    "progress_pct": 4.1,
+    "remaining_nm": 12736.5,
+    "total_nm": 13241.0,
+    "progress_pct": 3.8,
     "days_to_fremantle": 46,
     "remaining_is_estimate": true,
-    "remaining_note": "Remaining distance is an estimate along the predicted path to Gothenburg and a plausible, unconfirmed ocean route to Fremantle."
+    "remaining_note": "Remaining distance is an estimate along VesselFinder's predicted path to Gothenburg and H\u00f6egh's published voyage 129 schedule from Gothenburg to Fremantle, then a short hop to Burswood."
   },
-  "route_ports_beyond_gothenburg_confirmed": false,
+  "route_ports_beyond_gothenburg_confirmed": true,
+  "schedule": {
+    "label": "H\u00f6egh published schedule (voyage 129)",
+    "source_page": "https://www.hoeghautoliners.com/sailing-schedule",
+    "api": "https://www.hoeghautoliners.com/api/vessel?vesselCode=TOKY",
+    "api_params_note": "Parameter names are inverted: arrivalDate is the window start, departureDate is the window end. Dates are required or the API 502s or returns []. A working window is arrivalDate=2026-10-01&departureDate=2027-06-01. Filter results on voyage_NO 129.",
+    "retrieved_perth": "28 Nov 2026, about 3:00pm AWST",
+    "fremantle_display": "Show the cargo-record ETA of 13 Jan 2027 on the map; H\u00f6egh schedule window is 12\u201316 Jan 2027."
+  },
   "markers": {
     "john": {
       "lat": -31.95,
